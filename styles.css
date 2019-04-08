@@ -1,0 +1,19 @@
+textarea {
+  font: inherit;
+}
+
+#top {
+  position: fixed;
+  z-index: 1;
+  padding: 0 0 0 0 !important;
+  margin-top: -1em;
+  width: 100vw !important;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}

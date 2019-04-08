@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reservation Checker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.2/flatpickr.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.js"></script>
+  <script src="https://unpkg.com/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+</head>
+<body>
+  <!-- Sales Form Template -->
+  <div id="app" class="ui container fluid">
+    <div class="ui basic segment">
+      <sui-message positive icon="thumbs up" v-if="sales.length == 0">
+          <sui-message-header>
+            There 
+            {{ sales.length == 1 ? "is" : "are" }} 
+            {{ sales.length }}
+            new
+            {{ sales.length == 1 ? "reservation" : "reservations" }} pending!
+            Good work!
+          </sui-message-header>
+          <p>This can change at any minute now... Stay alert!
+          </p>
+        </sui-message>
+      <sui-message warning icon="info circle" v-if="sales.length > 0">
+        <sui-message-header>
+          There 
+          {{ sales.length == 1 ? "is" : "are" }} 
+          {{ sales.length }}
+          new
+          {{ sales.length == 1 ? "reservation" : "reservations" }}!
+          Please take action right now!
+        </sui-message-header>
+        <p>There {{ sales.length == 1 ? "is" : "are" }}  
+          {{ sales.length }} {{ sales.length == 1 ? "reservation" : "reservations" }} 
+          waiting to be checked and receive their confirmation letters!
+        </p>
+      </sui-message>
+      <div class="ui segment" v-if="sales.length > 0" v-for="sale in sales" :key="sale.id">
+          <div class="ui grid">
+            <div class="four wide column">
+              <sui-header>
+                  Sale #{{ sale.id }}
+                  <sui-label color="yellow">
+                    <i class="question icon"></i> tentative
+                  </sui-label>
+                  <sui-label color="green">
+                      <i class="dollar icon"></i> {{ sale.total }}
+                    </sui-label>
+                  <sui-header-subheader>
+                    <i class="user circle icon"></i> {{ sale.customer.name }}
+                  </sui-header-subheader>
+                  <sui-header-subheader>
+                    <i class="university icon"></i> {{ sale.organization }}
+                  </sui-header-subheader>
+                  <sui-header-subheader>
+                    <i class="pencil icon"></i>
+                      Created on {{ moment(sale.created_at).format('dddd, MMMM D YYYY [at] h:mm A') }}
+                      ({{ moment(sale.created_at).fromNow() }})
+                  </sui-header-subheader>
+                </sui-header>
+            </div>
+            <div class="twelve wide column">
+              <div class="ui items">
+                <div class="item" v-for="event in sale.events" :key="event.id">
+                  <div class="image"><img :src="event.show.cover"></div>
+                  <div class="content">
+                      <div class="header">{{ event.show.name }}</div>
+                      <div class="meta">{{ event.show.start }}</div>
+                      <div class="meta">
+                        <div class="ui black label">{{ event.show.type.name }}</div>
+                        <div class="ui black basic label">{{ event.show.duration }} minutes</div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
