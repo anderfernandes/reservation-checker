@@ -9,15 +9,13 @@ let app = new Vue({
 		}
 	},
   created() {
-		this.fetchSales()
-	},
-	updated() {
+    this.fetchSales()
 		setInterval(() => this.fetchSales(), 30000)
 	},
   methods: {
 		fetchSales() {
 			axios
-				.get(`http://0.0.0.0:8000/api/sales?status=tentative`)
+				.get(`https://astral.ctcd.org/api/sales?status=tentative`)
 				.then(response => this.sales = response.data)
 		},
 		moment(date) {
