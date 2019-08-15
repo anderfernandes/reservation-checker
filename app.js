@@ -16,7 +16,7 @@ let app = new Vue({
 		fetchSales() {
 			axios
 				.get(`https://astral.ctcd.org/api/sales?status=tentative`)
-				.then(response => this.sales = response.data)
+				.then(response => this.sales = response.data.data)
 		},
 		moment(date) {
 			return moment(date)

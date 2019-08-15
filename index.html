@@ -58,7 +58,7 @@
                     <i class="user circle icon"></i> {{ sale.customer.name }}
                   </sui-header-subheader>
                   <sui-header-subheader>
-                    <i class="university icon"></i> {{ sale.organization }}
+                    <i class="university icon"></i> {{ sale.organization.name }}
                   </sui-header-subheader>
                   <sui-header-subheader>
                     <i class="pencil icon"></i>
@@ -75,7 +75,7 @@
                       <div class="header">{{ event.show.name }}</div>
                       <div class="meta">{{ event.show.start }}</div>
                       <div class="meta">
-                        <div class="ui black label">{{ event.show.type.name }}</div>
+                        <div class="ui black label">{{ event.show.type }}</div>
                         <div class="ui black basic label">{{ event.show.duration }} minutes</div>
                       </div>
                   </div>
