@@ -1,0 +1,16 @@
+{
+  "short_name": "Reservation Checker",
+  "name": "Reservation Checker",
+  "icons": [
+    {
+      "src": "astral-logo-dark.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#FFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#002663"
+}
